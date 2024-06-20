@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PasswordWallet"
         tools:targetApi="31">
         <activity
-            android:name="com.example.passwordmanager.MainActivity"
+            android:name="com.example.passwordmanager.MainScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.PasswordWallet">
             <intent-filter>

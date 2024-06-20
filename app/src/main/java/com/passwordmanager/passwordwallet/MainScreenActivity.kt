@@ -7,19 +7,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.passwordmanager.passwordwallet.R
 
-class MainActivity : AppCompatActivity() {
+class MainScreenActivity : AppCompatActivity() {
     private val viewModel: PasswordViewModel by viewModels()
     private lateinit var passwordAdapter: PasswordAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_screen)
 
-        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        passwordAdapter = PasswordAdapter(emptyList())
-        recyclerView.adapter = passwordAdapter
+        val recyclerView: RecyclerView = findViewById(R.id.id_rv)
+        val fabBtn:FloatingActionButton = findViewById(R.id.id_fab_btn)
+        passwordAdapter            = PasswordAdapter(emptyList())
+        recyclerView.adapter       = passwordAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         viewModel.passwords.observe(this, Observer { passwords ->
