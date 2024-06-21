@@ -24,5 +24,4 @@
         </activity>
         <activity android:name="com.example.passwordmanager.NewActivity" />
     </application>
-
 </manifest>
