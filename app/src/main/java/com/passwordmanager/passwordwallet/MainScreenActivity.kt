@@ -9,11 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.passwordmanager.passwordwallet.R
 
 
 class MainScreenActivity : AppCompatActivity() {
-    private lateinit var passwordViewModel: PasswordViewModel
+    private var passwordViewModel: PasswordViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,19 +23,22 @@ class MainScreenActivity : AppCompatActivity() {
         val adapter                 =   PasswordListAdapter()
         recyclerView.adapter        =   adapter
 
+
+
         val fab = findViewById<FloatingActionButton>(com.passwordmanager.passwordwallet.R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(
                 this@MainScreenActivity,
-                NewActivity::class.java
+                AddDetailsScreenActivity::class.java
             )
             startActivity(intent)
             overridePendingTransition(com.passwordmanager.passwordwallet.R.anim.slide_in_up, com.passwordmanager.passwordwallet.R.anim.stay)
         }
 
         passwordViewModel           =   ViewModelProvider(this).get(PasswordViewModel::class.java)
-//        passwordViewModel.allPasswords.observe(this, Observer { passwords ->
-//            passwords?.let { adapter.setPasswords(it) }
-//        })
+
+        passwordViewModel!!.passwordEntries.observe(this){
+
+        }
     }
 }

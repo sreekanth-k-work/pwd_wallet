@@ -1,18 +1,23 @@
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.passwordmanager.passwordwallet.PasswordEntry
 
-class PasswordViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository: PasswordRepository = PasswordRepository(application)
-//    val allPasswords: LiveData<List<PasswordEntry>>
+class PasswordViewModel : ViewModel() {
+    // Private mutable LiveData
+    private val _passwordEntries = MutableLiveData<List<PasswordEntry>>()
 
-    init {
-//        allPasswords = repository.allPasswords
+    // Public immutable LiveData
+    var passwordEntries: LiveData<List<PasswordEntry>> = _passwordEntries
+
+    fun loadPasswordEntries() {
+        // Do an asynchronous operation to fetch passwords.
+        val entries = fetchPasswordEntriesFromDatabase()
+        _passwordEntries.value = entries
     }
 
-    fun insert(passwordEntry: PasswordEntry) {
-        repository.insert(passwordEntry)
+    private fun fetchPasswordEntriesFromDatabase(): List<PasswordEntry> {
+        // Your logic to fetch data
+        return ArrayList() // Replace with actual fetching logic
     }
 }

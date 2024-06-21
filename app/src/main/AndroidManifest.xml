@@ -22,6 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.passwordmanager.NewActivity" />
+        <activity android:name="com.example.passwordmanager.AddDetailsScreenActivity" />
     </application>
 </manifest>
