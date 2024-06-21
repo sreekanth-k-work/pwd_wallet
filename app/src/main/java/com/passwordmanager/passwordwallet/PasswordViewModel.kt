@@ -10,6 +10,12 @@ class PasswordViewModel : ViewModel() {
     // Public immutable LiveData
     var passwordEntries: LiveData<List<PasswordEntry>> = _passwordEntries
 
+    fun savePasswordEntry(passwordEntry: PasswordEntry) {
+        val currentEntries = _passwordEntries.value?.toMutableList() ?: mutableListOf()
+        currentEntries.add(passwordEntry)
+        _passwordEntries.value = currentEntries
+    }
+
     fun loadPasswordEntries() {
         // Do an asynchronous operation to fetch passwords.
         val entries = fetchPasswordEntriesFromDatabase()

@@ -1,6 +1,6 @@
 package com.example.passwordmanager
 
-import android.R
+import PasswordViewModel
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
@@ -8,6 +8,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.passwordmanager.passwordwallet.PasswordEntry
+import com.passwordmanager.passwordwallet.R
 
 
 class AddDetailsScreenActivity : AppCompatActivity() {
@@ -37,25 +40,34 @@ class AddDetailsScreenActivity : AppCompatActivity() {
         })
 
 
-        submitButton?.setOnClickListener(View.OnClickListener {
-            val website     = websiteEditText!!.getText().toString().trim { it <= ' ' }
-            val username    = usernameEditText!!.getText().toString().trim { it <= ' ' }
-            val password    = passwordEditText!!.getText().toString().trim { it <= ' ' }
+        submitButton?.setOnClickListener {
+            val website  = websiteEditText!!.text.toString().trim()
+            val username = usernameEditText!!.text.toString().trim()
+            val password = passwordEditText!!.text.toString().trim()
+
             if (website.isEmpty() || username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this@AddDetailsScreenActivity, "All fields are required", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this@AddDetailsScreenActivity, "All fields are required", Toast.LENGTH_SHORT).show()
             } else {
-                // Handle the submission, e.g., save to database or pass back to previous activity
-                Toast.makeText(this@AddDetailsScreenActivity, "Submitted!", Toast.LENGTH_SHORT).show()
-                // For now, just finish the activity
+                // Assuming you have a ViewModel instance initialized
+                val passwordViewModel = ViewModelProvider(this).get(PasswordViewModel::class.java)
+
+                // Create a PasswordEntry object
+                val passwordEntry = PasswordEntry(website,username,password)
+
+                // Save the passwordEntry to ViewModel (you can handle saving to DB or other logic here)
+                passwordViewModel.savePasswordEntry(passwordEntry)
+
+                Toast.makeText(this@AddDetailsScreenActivity, "Details saved!", Toast.LENGTH_SHORT).show()
+
+                // Finish the activity
                 finish()
             }
-        })
+        }
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
 
-//        overridePendingTransition(R.anim.stay, R.anim.slide_out_down);
+        overridePendingTransition(R.anim.stay, R.anim.slide_out_down);
     }
 }
