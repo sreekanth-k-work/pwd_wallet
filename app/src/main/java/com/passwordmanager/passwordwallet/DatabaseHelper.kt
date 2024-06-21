@@ -10,13 +10,13 @@ class DatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private const val DATABASE_NAME = "passwordManager.db"
-        private const val DATABASE_VERSION = 1
-        private const val TABLE_NAME = "passwords"
-        private const val COLUMN_ID = "id"
-        private const val COLUMN_URL = "url"
-        private const val COLUMN_USERNAME = "username"
-        private const val COLUMN_PASSWORD = "password"
+        private const val DATABASE_NAME         = "passwordManager.db"
+        private const val DATABASE_VERSION      = 1
+        private const val TABLE_NAME            = "passwords"
+        private const val COLUMN_ID             = "id"
+        private const val COLUMN_URL            = "url"
+        private const val COLUMN_USERNAME       = "username"
+        private const val COLUMN_PASSWORD       = "password"
     }
 
     override fun onCreate(db: SQLiteDatabase) {

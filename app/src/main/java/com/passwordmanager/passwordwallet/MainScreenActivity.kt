@@ -1,35 +1,30 @@
 package com.example.passwordmanager
 
-import android.content.Intent
+import PasswordListAdapter
+import PasswordViewModel
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.passwordmanager.passwordwallet.R
 
 class MainScreenActivity : AppCompatActivity() {
-    private val viewModel: PasswordViewModel by viewModels()
-    private lateinit var passwordAdapter: PasswordAdapter
+    private lateinit var passwordViewModel: PasswordViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_screen)
 
-        val recyclerView: RecyclerView = findViewById(R.id.id_rv)
-        val fabBtn:FloatingActionButton = findViewById(R.id.id_fab_btn)
-        passwordAdapter            = PasswordAdapter(emptyList())
-        recyclerView.adapter       = passwordAdapter
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        val adapter = PasswordListAdapter()
+        recyclerView.adapter = adapter
 
-        viewModel.passwords.observe(this, Observer { passwords ->
-            passwordAdapter.updatePasswords(passwords)
-        })
-
-        // Start auto-lock service
-        val serviceIntent = Intent(this, AutoLockService::class.java)
-        startService(serviceIntent)
+        passwordViewModel = ViewModelProvider(this).get(PasswordViewModel::class.java)
+//        passwordViewModel.allPasswords.observe(this, Observer { passwords ->
+//            passwords?.let { adapter.setPasswords(it) }
+//        })
     }
 }

@@ -1,22 +1,18 @@
-package com.example.passwordmanager
-
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import com.passwordmanager.passwordwallet.PasswordEntry
 
 class PasswordViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = PasswordRepository(application)
-    val passwords: LiveData<List<Password>> = repository.getPasswords()
+    private val repository: PasswordRepository = PasswordRepository(application)
+//    val allPasswords: LiveData<List<PasswordEntry>>
 
-    fun addPassword(url: String, username: String, password: String) {
-        repository.addPassword(url, username, password)
+    init {
+//        allPasswords = repository.allPasswords
     }
 
-    fun updatePassword(id: Int, url: String, username: String, password: String) {
-        repository.updatePassword(id, url, username, password)
-    }
-
-    fun deletePassword(id: Int) {
-        repository.deletePassword(id)
+    fun insert(passwordEntry: PasswordEntry) {
+        repository.insert(passwordEntry)
     }
 }

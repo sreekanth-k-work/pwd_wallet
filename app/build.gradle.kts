@@ -13,12 +13,16 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
+
+
+
 
     buildTypes {
         release {
@@ -52,6 +56,10 @@ android {
 dependencies {
 
     implementation(libs.material)
+    implementation(libs.multidex)
+    implementation (libs.androidx.room.runtime)
+    annotationProcessor (libs.androidx.room.compiler)
+    implementation(libs.androidx.security.crypto)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -69,4 +77,8 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation (libs.androidx.room.runtime.v230)
+    annotationProcessor(libs.androidx.room.compiler.v230)
+    implementation(libs.androidx.security.crypto.v110alpha03)
+
 }

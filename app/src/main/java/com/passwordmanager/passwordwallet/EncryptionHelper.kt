@@ -9,9 +9,9 @@ import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
 
 object EncryptionHelper {
-    private const val KEYSTORE_ALIAS = "passwordManagerKey"
-    private const val ANDROID_KEYSTORE = "AndroidKeyStore"
-    private const val TRANSFORMATION = "AES/GCM/NoPadding"
+    private const val KEYSTORE_ALIAS    = "passwordManagerKey"
+    private const val ANDROID_KEYSTORE  = "AndroidKeyStore"
+    private const val TRANSFORMATION    = "AES/GCM/NoPadding"
 
     fun generateKey() {
         val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE)

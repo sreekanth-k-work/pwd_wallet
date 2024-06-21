@@ -1,49 +1,22 @@
-package com.example.passwordmanager
+import android.app.Application
+import androidx.room.Room.databaseBuilder
+import com.passwordmanager.passwordwallet.AppDatabase
+import com.passwordmanager.passwordwallet.PasswordDao
+import com.passwordmanager.passwordwallet.PasswordEntry
 
-import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+class PasswordRepository(application: Application?) {
+    private val passwordDao: PasswordDao
 
-class PasswordRepository(context: Context) {
-    private val dbHelper = DatabaseHelper(context)
-
-    fun getPasswords(): LiveData<List<Password>> {
-        val passwordsLiveData = MutableLiveData<List<Password>>()
-        CoroutineScope(Dispatchers.IO).launch {
-            val passwords = dbHelper.getPasswords()
-            passwordsLiveData.postValue(passwords)
-        }
-        return passwordsLiveData
+    init {
+        val db =
+            databaseBuilder(application!!, AppDatabase::class.java, "password_database").build()
+        passwordDao = db.passwordDao()
     }
 
-    fun addPassword(url: String, username: String, password: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val encryptedPassword = EncryptionHelper.encrypt(password)
-                dbHelper.addPassword(url, username, encryptedPassword)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+    fun insert(passwordEntry: PasswordEntry?) {
+        Thread { passwordDao.insert(passwordEntry) }.start()
     }
 
-    fun updatePassword(id: Int, url: String, username: String, password: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val encryptedPassword = EncryptionHelper.encrypt(password)
-                dbHelper.updatePassword(id, url, username, encryptedPassword)
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
-    }
-
-    fun deletePassword(id: Int) {
-        CoroutineScope(Dispatchers.IO).launch {
-            dbHelper.deletePassword(id)
-        }
-    }
+    val allPasswords: List<PasswordEntry>
+        get() = passwordDao.allPasswords
 }
