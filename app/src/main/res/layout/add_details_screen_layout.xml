@@ -34,24 +34,25 @@
         android:padding="10dp"
         android:layout_marginBottom="16dp"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/id_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:padding="10dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="end">
+        android:orientation="horizontal">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLayout"
+            android:layout_width="0dip"
+            android:layout_weight="2"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/id_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="10dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <ToggleButton
             android:id="@+id/showPasswordToggle"
@@ -60,6 +61,12 @@
             android:text="Show Password"
             android:layout_marginEnd="8dp"
             android:checked="false"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
 
         <ImageView
             android:id="@+id/eyeIcon"
@@ -75,15 +82,15 @@
             android:layout_height="wrap_content"
             android:text="Password Hidden"
             android:visibility="gone"/>
-
     </LinearLayout>
 
     <Button
         android:id="@+id/id_submit_button"
-        android:layout_width="match_parent"
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
         android:text="Submit"
+        android:layout_marginTop="50dip"
         android:padding="10dp"
         android:textColor="#FFFFFF"/>
-
 </LinearLayout>

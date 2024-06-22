@@ -22,7 +22,7 @@ class MainScreenActivity : AppCompatActivity() {
 
         val recyclerView            =   findViewById<RecyclerView>(com.passwordmanager.passwordwallet.R.id.recyclerView)
         recyclerView.layoutManager  =   LinearLayoutManager(this)
-        val adapter                 =   PasswordListAdapter()
+        var adapter                 =   PasswordListAdapter()
         recyclerView.adapter        =   adapter
 
         val fab = findViewById<FloatingActionButton>(com.passwordmanager.passwordwallet.R.id.fab)
@@ -39,8 +39,8 @@ class MainScreenActivity : AppCompatActivity() {
 
         passwordViewModel?.passwordEntries?.observe(this, Observer { passwordEntries ->
             // Update the UI when passwordEntries changes
+            adapter = recyclerView.adapter as PasswordListAdapter
             adapter.setPasswords(passwordEntries)
-            adapter.notifyDataSetChanged()
         })
     }
 }
