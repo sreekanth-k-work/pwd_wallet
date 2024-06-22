@@ -63,4 +63,10 @@ class AddDetailsScreenActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+        overridePendingTransition(0, R.anim.slide_down)
+    }
 }
