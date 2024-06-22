@@ -18,8 +18,8 @@ class PasswordViewModel : ViewModel() {
 
     fun loadPasswordEntries() {
         // Do an asynchronous operation to fetch passwords.
-        val entries = fetchPasswordEntriesFromDatabase()
-        _passwordEntries.value = entries
+        val entries             = fetchPasswordEntriesFromDatabase()
+        _passwordEntries.value  = entries
     }
 
     private fun fetchPasswordEntriesFromDatabase(): List<PasswordEntry> {

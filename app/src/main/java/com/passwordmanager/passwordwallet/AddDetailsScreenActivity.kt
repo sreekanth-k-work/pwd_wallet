@@ -22,6 +22,7 @@ class AddDetailsScreenActivity : AppCompatActivity() {
     private lateinit var passwordEditText: EditText
     private lateinit var eyeIcon: ImageView
     private lateinit var submitButton: Button
+    private lateinit var backButton:Button
     private var isPasswordVisible = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +34,13 @@ class AddDetailsScreenActivity : AppCompatActivity() {
         usernameEditText    =   findViewById(R.id.id_username)
         passwordEditText    =   findViewById(R.id.id_password)
         eyeIcon             =   findViewById(R.id.id_eye_icon)
-        submitButton        =   findViewById(R.id.id_submit_button)
+        submitButton        =   findViewById(R.id.id_save_button)
+        backButton          =   findViewById(R.id.id_back_btn)
+
+        backButton.setOnClickListener(View.OnClickListener {
+            finish()
+            overridePendingTransition(0, R.anim.slide_down)
+        })
 
         eyeIcon.setOnClickListener {
             if (isPasswordVisible) {
@@ -57,7 +64,7 @@ class AddDetailsScreenActivity : AppCompatActivity() {
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             } else {
                 val passwordEntry = PasswordEntry(website, username, password)
-//                passwordViewModel.insert(passwordEntry)
+                passwordViewModel.savePasswordEntry(passwordEntry)
                 Toast.makeText(this, "Details saved!", Toast.LENGTH_SHORT).show()
                 finish()
             }

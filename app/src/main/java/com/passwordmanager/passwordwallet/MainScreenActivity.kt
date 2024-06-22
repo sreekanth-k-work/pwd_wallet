@@ -25,7 +25,7 @@ class MainScreenActivity : AppCompatActivity() {
         var adapter                 =   PasswordListAdapter()
         recyclerView.adapter        =   adapter
 
-        val fab = findViewById<FloatingActionButton>(com.passwordmanager.passwordwallet.R.id.fab)
+        val fab                     =   findViewById<FloatingActionButton>(com.passwordmanager.passwordwallet.R.id.fab)
         fab.setOnClickListener {
             val intent = Intent(
                 this@MainScreenActivity,
@@ -36,6 +36,8 @@ class MainScreenActivity : AppCompatActivity() {
         }
 
         passwordViewModel           =   ViewModelProvider(this).get(PasswordViewModel::class.java)
+
+        passwordViewModel?.loadPasswordEntries()
 
         passwordViewModel?.passwordEntries?.observe(this, Observer { passwordEntries ->
             // Update the UI when passwordEntries changes
