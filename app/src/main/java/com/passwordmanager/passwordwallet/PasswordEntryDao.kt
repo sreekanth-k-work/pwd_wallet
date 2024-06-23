@@ -1,11 +1,9 @@
-package com.passwordmanager.passwordwallet;
-
-
-import PasswordEntry
+package com.passwordmanager.passwordwallet
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.example.passwordmanager.PasswordEntry
 
 @Dao
 interface PasswordEntryDao {

@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.passwordmanager.passwordwallet.PasswordEntry
 import com.passwordmanager.passwordwallet.R
 
 class AddDetailsScreenActivity : AppCompatActivity() {
@@ -64,7 +63,7 @@ class AddDetailsScreenActivity : AppCompatActivity() {
                 Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
             } else {
                 val passwordEntry = PasswordEntry(website, username, password)
-//                passwordViewModel.savePasswordEntry(passwordEntry)
+                passwordViewModel.savePasswordEntry(passwordEntry)
                 Toast.makeText(this, "Details saved!", Toast.LENGTH_SHORT).show()
                 finish()
             }

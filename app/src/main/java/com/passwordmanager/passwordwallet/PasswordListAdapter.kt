@@ -3,7 +3,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.passwordmanager.passwordwallet.PasswordEntry
 import com.passwordmanager.passwordwallet.R
 
 
@@ -17,7 +16,7 @@ class PasswordListAdapter : RecyclerView.Adapter<PasswordListAdapter.PasswordVie
 
     override fun onBindViewHolder(holder: PasswordViewHolder, position: Int) {
         val current = passwords[position]
-        holder.websiteTextView.text  = current.website
+        holder.websiteTextView.text  = current.title
         holder.usernameTextView.text = current.username
     }
 

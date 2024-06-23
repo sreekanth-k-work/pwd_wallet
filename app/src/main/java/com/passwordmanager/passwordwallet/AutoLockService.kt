@@ -24,7 +24,7 @@ class AutoLockService : Service() {
             .setSmallIcon(com.passwordmanager.passwordwallet.R.drawable.ic_add)
             .setContentIntent(pendingIntent)
 
-//        startForeground(1, builder.build())
+        startForeground(1, builder.build())
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {

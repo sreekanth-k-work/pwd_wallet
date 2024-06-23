@@ -2,6 +2,7 @@ package com.passwordmanager.passwordwallet;
 
 //import static androidx.compose.ui.text.input.CursorAnchorInfoBuilder_androidKt.build;
 
+import PasswordEntry
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
