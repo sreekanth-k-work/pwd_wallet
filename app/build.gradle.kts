@@ -21,9 +21,6 @@ android {
         }
     }
 
-
-
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -54,7 +51,7 @@ android {
 }
 
 dependencies {
-
+    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.material)
     implementation(libs.multidex)
     implementation (libs.androidx.room.runtime)
@@ -70,6 +67,7 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.appcompat)
+    implementation (libs.kotlinx.coroutines.core.v152)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -78,7 +76,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation (libs.androidx.room.runtime.v230)
+    implementation (libs.kotlinx.coroutines.core)
     annotationProcessor(libs.androidx.room.compiler.v230)
     implementation(libs.androidx.security.crypto.v110alpha03)
-
 }

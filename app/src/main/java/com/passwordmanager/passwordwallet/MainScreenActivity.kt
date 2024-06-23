@@ -37,7 +37,7 @@ class MainScreenActivity : AppCompatActivity() {
 
         passwordViewModel           =   ViewModelProvider(this).get(PasswordViewModel::class.java)
 
-        passwordViewModel?.loadPasswordEntries()
+//        passwordViewModel?.loadPasswordEntries()
 
         passwordViewModel?.passwordEntries?.observe(this, Observer { passwordEntries ->
             // Update the UI when passwordEntries changes

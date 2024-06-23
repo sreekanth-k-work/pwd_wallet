@@ -1,4 +1,3 @@
-import android.R
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -22,7 +21,7 @@ class AutoLockService : Service() {
         val builder: NotificationCompat.Builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Password Manager")
             .setContentText("Auto-lock in progress")
-            .setSmallIcon(R.drawable.ic_lock_lock)
+            .setSmallIcon(com.passwordmanager.passwordwallet.R.drawable.ic_add)
             .setContentIntent(pendingIntent)
 
 //        startForeground(1, builder.build())

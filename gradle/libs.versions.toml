@@ -1,11 +1,13 @@
 [versions]
 agp = "8.5.0"
 androidxRoomCompiler = "2.3.0"
+jetbrainsKotlinxCoroutinesCore = "1.5.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
+kotlinxCoroutinesCore = "1.7.3"
 lifecycleRuntimeKtx = "2.8.2"
 activityCompose = "1.9.0"
 composeBom = "2024.04.01"
@@ -41,6 +43,8 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+kotlinx-coroutines-core-v152 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "jetbrainsKotlinxCoroutinesCore" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 multidex = { module = "com.android.support:multidex", version.ref = "multidex" }
 

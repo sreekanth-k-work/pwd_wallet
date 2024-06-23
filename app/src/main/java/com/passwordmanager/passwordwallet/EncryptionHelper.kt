@@ -47,7 +47,7 @@ object EncryptionHelper {
     }
 
     fun decrypt(encryptedData: ByteArray): String {
-        val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE)
+        val keyStore = KeyStore .getInstance(ANDROID_KEYSTORE)
         keyStore.load(null)
 
         val secretKey = keyStore.getKey(KEYSTORE_ALIAS, null) as SecretKey
