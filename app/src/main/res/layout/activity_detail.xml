@@ -2,6 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:text="DETAILS"
+        android:id="@+id/id_details_heading_tv"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:layout_height="wrap_content"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="center">
 <GridLayout
     android:layout_width="wrap_content"
@@ -16,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Website"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:gravity="end" />
 
@@ -36,10 +50,10 @@
         android:id="@+id/usernameKeyTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="end"
         android:text="Username"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="end" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/usernameValueTextView"
@@ -57,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         android:gravity="end" />
 
@@ -72,4 +86,5 @@
         android:layout_gravity="start" />
 
 </GridLayout>
+</LinearLayout>
 </LinearLayout>

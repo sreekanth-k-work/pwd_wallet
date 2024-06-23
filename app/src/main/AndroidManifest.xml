@@ -20,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity android:name="com.example.passwordmanager.AddDetailsScreenActivity"/>
+        <activity android:name="com.passwordmanager.passwordwallet.DetailActivity"/>
     </application>
 </manifest>

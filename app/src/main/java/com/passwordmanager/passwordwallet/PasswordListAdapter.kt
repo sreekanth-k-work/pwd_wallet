@@ -1,9 +1,11 @@
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.passwordmanager.PasswordEntry
+import com.passwordmanager.passwordwallet.DetailActivity
 import com.passwordmanager.passwordwallet.R
 
 
@@ -19,6 +21,14 @@ class PasswordListAdapter : RecyclerView.Adapter<PasswordListAdapter.PasswordVie
         val current = passwords[position]
         holder.websiteTextView.text  = current.title
         holder.usernameTextView.text = current.username
+
+        // Handle item click
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java).apply {
+                putExtra("PASSWORD_ENTRY", current) // Pass the selected PasswordEntry to DetailActivity
+            }
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = passwords.size
