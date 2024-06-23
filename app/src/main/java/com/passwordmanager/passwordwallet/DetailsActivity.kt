@@ -11,6 +11,8 @@ class DetailActivity : AppCompatActivity() {
     private var websiteTextView:TextView?   = null
     private var usernameTextView:TextView?  = null
     private var passwordTextView:TextView?  = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -31,5 +33,11 @@ class DetailActivity : AppCompatActivity() {
             usernameTextView?.text   = it.username
             passwordTextView?.text   = it.password
         }
+    }
+
+
+    override fun finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_out_static, R.anim.slide_out_right);
     }
 }
