@@ -3,7 +3,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.passwordmanager.passwordwallet.PasswordEntry
+import com.passwordmanager.passwordwallet.AppDatabase
+import com.passwordmanager.passwordwallet.PasswordEntryDao
 import kotlinx.coroutines.launch
 
 class PasswordViewModel(application: Application) : AndroidViewModel(application) {
@@ -13,23 +14,23 @@ class PasswordViewModel(application: Application) : AndroidViewModel(application
     // Public immutable LiveData
     val passwordEntries: LiveData<List<PasswordEntry>>  = _passwordEntries
 
-//    private val passwordEntryDao: PasswordEntry         = AppDatabase.getDatabase(application).passwordEntryDao()
-//
-//    fun savePasswordEntry(passwordEntry: PasswordEntry) {
-//        viewModelScope.launch {
-//            passwordEntryDao.insert(passwordEntry)
-//            loadPasswordEntries()
-//        }
-//    }
-//
-//    fun loadPasswordEntries() {
-//        viewModelScope.launch {
-//            val entries = fetchPasswordEntriesFromDatabase()
-//            _passwordEntries.value = entries
-//        }
-//    }
-//
-//    private suspend fun fetchPasswordEntriesFromDatabase(): List<PasswordEntry> {
-//        return passwordEntryDao.getAll()
-//    }
+    private val passwordEntryDao: PasswordEntryDao = AppDatabase.getDatabase(application).passwordEntryDao()
+
+    fun savePasswordEntry(passwordEntry: PasswordEntry) {
+        viewModelScope.launch {
+            passwordEntryDao.insert(passwordEntry)
+            loadPasswordEntries()
+        }
+    }
+
+    fun loadPasswordEntries() {
+        viewModelScope.launch {
+            val entries = fetchPasswordEntriesFromDatabase()
+            _passwordEntries.value = entries
+        }
+    }
+
+    private suspend fun fetchPasswordEntriesFromDatabase(): List<PasswordEntry> {
+        return passwordEntryDao.getAll()
+    }
 }
