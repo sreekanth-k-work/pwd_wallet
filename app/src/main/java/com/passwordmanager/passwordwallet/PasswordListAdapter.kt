@@ -17,8 +17,8 @@ class PasswordListAdapter : RecyclerView.Adapter<PasswordListAdapter.PasswordVie
 
     override fun onBindViewHolder(holder: PasswordViewHolder, position: Int) {
         val current = passwords[position]
-        holder.websiteTextView.text  = "Website  :" + current.title
-        holder.usernameTextView.text = "UserName :" + current.username
+        holder.websiteTextView.text  = current.title
+        holder.usernameTextView.text = current.username
     }
 
     override fun getItemCount() = passwords.size
@@ -29,7 +29,7 @@ class PasswordListAdapter : RecyclerView.Adapter<PasswordListAdapter.PasswordVie
     }
 
     class PasswordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val websiteTextView: TextView  = itemView.findViewById(R.id.websiteTextView)
-        val usernameTextView: TextView = itemView.findViewById(R.id.usernameTextView)
+        val websiteTextView: TextView  = itemView.findViewById(R.id.id_website_value_tv)
+        val usernameTextView: TextView = itemView.findViewById(R.id.id_username_value_tv)
     }
 }

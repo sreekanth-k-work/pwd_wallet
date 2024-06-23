@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+<GridLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:padding="16dp"
+    android:rowCount="3">
+
+    <!-- Website Key-Value Pair -->
+    <TextView
+        android:id="@+id/websiteKeyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Website"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="end" />
+
+
+    <TextView
+        android:id="@+id/websiteValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dip"
+        android:text="www.example.com"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:layout_gravity="start" />
+
+    <!-- Username Key-Value Pair -->
+    <TextView
+        android:id="@+id/usernameKeyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="end" />
+
+    <TextView
+        android:id="@+id/usernameValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dip"
+        android:text="user123"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:layout_gravity="start" />
+
+    <!-- Password Key-Value Pair -->
+    <TextView
+        android:id="@+id/passwordKeyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="end" />
+
+    <TextView
+        android:id="@+id/passwordValueTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dip"
+        android:text="*********"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:layout_gravity="start" />
+
+</GridLayout>
+</LinearLayout>
