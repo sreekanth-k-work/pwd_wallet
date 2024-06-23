@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt") // Add this li
+
 }
+
 
 android {
     namespace = "com.passwordmanager.passwordwallet"
@@ -51,9 +54,19 @@ android {
 }
 
 dependencies {
+
+    implementation (libs.androidx.room.runtime.v251)
+    implementation (libs.androidx.room.ktx)
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.material)
     implementation(libs.multidex)
+
+    kapt(libs.androidx.room.compiler.v230) // Change this line
+
+    kapt(libs.androidx.room.compiler) // Change this line
+
     implementation (libs.androidx.room.runtime)
     annotationProcessor (libs.androidx.room.compiler)
     implementation(libs.androidx.security.crypto)

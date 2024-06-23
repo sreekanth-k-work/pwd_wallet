@@ -35,7 +35,7 @@ class MainScreenActivity : AppCompatActivity() {
             overridePendingTransition(com.passwordmanager.passwordwallet.R.anim.slide_in_up, com.passwordmanager.passwordwallet.R.anim.stay)
         }
 
-        passwordViewModel           =   ViewModelProvider(this).get(PasswordViewModel::class.java)
+        passwordViewModel           =   ViewModelProvider(this).get(PasswordViewModel::class)
 
         passwordViewModel?.loadPasswordEntries()
 

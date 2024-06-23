@@ -2,12 +2,12 @@ package com.passwordmanager.passwordwallet;
 
 //import static androidx.compose.ui.text.input.CursorAnchorInfoBuilder_androidKt.build;
 
-import PasswordEntry
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 import androidx.room.Room;
 import android.content.Context;
+import com.example.passwordmanager.PasswordEntry
 
 import kotlin.jvm.Volatile;
 
@@ -27,3 +27,5 @@ abstract class AppDatabase : RoomDatabase() {
 
     }
 }
+
+
