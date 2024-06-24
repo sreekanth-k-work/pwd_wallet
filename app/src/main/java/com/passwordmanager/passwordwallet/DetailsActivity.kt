@@ -18,7 +18,6 @@ class DetailActivity : AppCompatActivity() {
     private var isPasswordVisible           = false
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -42,17 +41,25 @@ class DetailActivity : AppCompatActivity() {
         }
 
         eyeIconIv?.setOnClickListener {
-            if (isPasswordVisible) {
-                passwordTextView!!.transformationMethod = PasswordTransformationMethod.getInstance()
-                eyeIconIv!!.setImageResource(R.drawable.ic_eye_closed)
-            } else {
-                passwordTextView!!.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                eyeIconIv!!.setImageResource(R.drawable.ic_eye_open)
-            }
-            isPasswordVisible = !isPasswordVisible
+
             // Move the cursor to the end of the text
+            updatePasswordStatus()
         }
 
+        //Just to set initial condition...
+        isPasswordVisible = true
+        updatePasswordStatus()
+    }
+
+    fun updatePasswordStatus(){
+        if (isPasswordVisible) {
+            passwordTextView!!.transformationMethod = PasswordTransformationMethod.getInstance()
+            eyeIconIv!!.setImageResource(R.drawable.ic_eye_closed)
+        } else {
+            passwordTextView!!.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            eyeIconIv!!.setImageResource(R.drawable.ic_eye_open)
+        }
+        isPasswordVisible = !isPasswordVisible
     }
 
 
