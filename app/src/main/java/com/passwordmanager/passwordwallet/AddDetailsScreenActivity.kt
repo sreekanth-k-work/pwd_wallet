@@ -24,9 +24,20 @@ class AddDetailsScreenActivity : AppCompatActivity() {
     private lateinit var backButton:Button
     private var isPasswordVisible = false
 
+
+    private fun hideStatusBar() {
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+    }
+
+    private fun showStatusBar() {
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_details_screen_layout)
+
+        hideStatusBar()
 
         passwordViewModel   =   ViewModelProvider(this).get(PasswordViewModel::class.java)
         websiteEditText     =   findViewById(R.id.id_website)
@@ -68,6 +79,12 @@ class AddDetailsScreenActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        showStatusBar()
     }
 
     override fun onBackPressed() {

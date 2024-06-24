@@ -4,6 +4,7 @@ import PasswordListAdapter
 import PasswordViewModel
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -19,6 +20,8 @@ class MainScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.passwordmanager.passwordwallet.R.layout.activity_main_screen)
+
+        supportActionBar?.show()
 
         val recyclerView            =   findViewById<RecyclerView>(com.passwordmanager.passwordwallet.R.id.recyclerView)
         recyclerView.layoutManager  =   LinearLayoutManager(this)
@@ -44,5 +47,21 @@ class MainScreenActivity : AppCompatActivity() {
             adapter = recyclerView.adapter as PasswordListAdapter
             adapter.setPasswords(passwordEntries)
         })
+
+        hideStatusBar()
+    }
+
+    private fun hideStatusBar() {
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+    }
+
+    private fun showStatusBar() {
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        showStatusBar()
     }
 }
