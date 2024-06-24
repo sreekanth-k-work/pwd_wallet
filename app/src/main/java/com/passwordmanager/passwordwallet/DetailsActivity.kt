@@ -34,7 +34,7 @@ class DetailActivity : AppCompatActivity() {
 
         backButton?.setOnClickListener(View.OnClickListener {
             finish()
-            overridePendingTransition(0, R.anim.slide_down)
+            overridePendingTransition(0, R.anim.slide_out_right)
         })
 
         var detailsHeadingTv:TextView  = findViewById(R.id.id_details_heading_tv)
