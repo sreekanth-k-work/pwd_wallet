@@ -2,6 +2,9 @@ package com.passwordmanager.passwordwallet
 
 import android.graphics.Paint
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.passwordmanager.PasswordEntry
@@ -11,6 +14,9 @@ class DetailActivity : AppCompatActivity() {
     private var websiteTextView:TextView?   = null
     private var usernameTextView:TextView?  = null
     private var passwordTextView:TextView?  = null
+    private  var eyeIconIv: ImageView?      = null
+    private var isPasswordVisible           = false
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +26,7 @@ class DetailActivity : AppCompatActivity() {
         websiteTextView                = findViewById(R.id.websiteValueTextView)
         usernameTextView               = findViewById(R.id.usernameValueTextView)
         passwordTextView               = findViewById(R.id.passwordValueTextView)
+        eyeIconIv                      = findViewById(R.id.id_eye_icon)
 
         var detailsHeadingTv:TextView  = findViewById(R.id.id_details_heading_tv)
         detailsHeadingTv.paintFlags    = Paint.UNDERLINE_TEXT_FLAG or detailsHeadingTv.paintFlags
@@ -33,6 +40,19 @@ class DetailActivity : AppCompatActivity() {
             usernameTextView?.text   = it.username
             passwordTextView?.text   = it.password
         }
+
+        eyeIconIv?.setOnClickListener {
+            if (isPasswordVisible) {
+                passwordTextView!!.transformationMethod = PasswordTransformationMethod.getInstance()
+                eyeIconIv!!.setImageResource(R.drawable.ic_eye_closed)
+            } else {
+                passwordTextView!!.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                eyeIconIv!!.setImageResource(R.drawable.ic_eye_open)
+            }
+            isPasswordVisible = !isPasswordVisible
+            // Move the cursor to the end of the text
+        }
+
     }
 
 
