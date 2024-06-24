@@ -4,6 +4,7 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ class DetailActivity : AppCompatActivity() {
     private var usernameTextView:TextView?  = null
     private var passwordTextView:TextView?  = null
     private  var eyeIconIv: ImageView?      = null
+    private var backButton:ImageView?       = null
     private var isPasswordVisible           = false
 
 
@@ -26,6 +28,14 @@ class DetailActivity : AppCompatActivity() {
         usernameTextView               = findViewById(R.id.usernameValueTextView)
         passwordTextView               = findViewById(R.id.passwordValueTextView)
         eyeIconIv                      = findViewById(R.id.id_eye_icon)
+
+
+        backButton                     = findViewById(R.id.id_back_btn)
+
+        backButton?.setOnClickListener(View.OnClickListener {
+            finish()
+            overridePendingTransition(0, R.anim.slide_down)
+        })
 
         var detailsHeadingTv:TextView  = findViewById(R.id.id_details_heading_tv)
         detailsHeadingTv.paintFlags    = Paint.UNDERLINE_TEXT_FLAG or detailsHeadingTv.paintFlags
