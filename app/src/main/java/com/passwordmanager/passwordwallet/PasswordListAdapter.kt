@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.passwordmanager.PasswordEntry
-import com.passwordmanager.passwordwallet.DetailActivity2
+import com.passwordmanager.passwordwallet.DetailActivity
 
 
 class PasswordListAdapter : RecyclerView.Adapter<PasswordListAdapter.PasswordViewHolder>() {
@@ -24,7 +24,7 @@ class PasswordListAdapter : RecyclerView.Adapter<PasswordListAdapter.PasswordVie
 
         // Handle item click
         holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, DetailActivity2::class.java).apply {
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java).apply {
                 putExtra("PASSWORD_ENTRY", current) // Pass the selected PasswordEntry to DetailActivity
             }
             holder.itemView.context.startActivity(intent)
