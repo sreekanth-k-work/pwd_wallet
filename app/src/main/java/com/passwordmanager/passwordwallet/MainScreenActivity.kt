@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.passwordmanager.passwordwallet.R
 
 
 class MainScreenActivity : AppCompatActivity() {
@@ -68,6 +69,7 @@ class MainScreenActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         AlertDialog.Builder(this)
+            .setIcon(R.mipmap.wallet_app_icon)  // Set the logo
             .setMessage("Are you sure you want to exit the application?")
             .setCancelable(false)
             .setPositiveButton("Yes") { dialog, id ->

@@ -144,7 +144,10 @@
                         android:text="*********"
                         android:textSize="20sp"
                         android:textStyle="normal"/>
-
+                    <View android:layout_width="0dip"
+                        android:layout_height="fill_parent"
+                        android:layout_weight = "1"
+                        />
                     <ImageView
                         android:id="@+id/id_eye_icon"
                         android:layout_marginStart="10dp"
