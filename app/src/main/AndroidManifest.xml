@@ -23,6 +23,6 @@
 
 
         <activity android:name="com.example.passwordmanager.AddDetailsScreenActivity"/>
-        <activity android:name="com.passwordmanager.passwordwallet.DetailActivity"/>
+        <activity android:name="com.passwordmanager.passwordwallet.DetailActivity2"/>
     </application>
 </manifest>

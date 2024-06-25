@@ -29,7 +29,6 @@ class DetailActivity : AppCompatActivity() {
         passwordTextView               = findViewById(R.id.passwordValueTextView)
         eyeIconIv                      = findViewById(R.id.id_eye_icon)
 
-
         backButton                     = findViewById(R.id.id_back_btn)
 
         backButton?.setOnClickListener(View.OnClickListener {

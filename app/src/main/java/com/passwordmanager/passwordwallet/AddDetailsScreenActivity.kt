@@ -35,7 +35,7 @@ class AddDetailsScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.add_details_screen_layout)
+        setContentView(R.layout.activity_add_details_screen)
 
         hideStatusBar()
 
