@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -63,5 +64,16 @@ class MainScreenActivity : AppCompatActivity() {
         super.onResume()
 
         showStatusBar()
+    }
+
+    override fun onBackPressed() {
+        AlertDialog.Builder(this)
+            .setMessage("Are you sure you want to exit the application?")
+            .setCancelable(false)
+            .setPositiveButton("Yes") { dialog, id ->
+                super.onBackPressed()
+            }
+            .setNegativeButton("No", null)
+            .show()
     }
 }
