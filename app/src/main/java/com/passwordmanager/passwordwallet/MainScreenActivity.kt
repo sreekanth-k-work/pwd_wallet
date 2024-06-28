@@ -9,9 +9,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -108,7 +106,10 @@ class MainScreenActivity : BaseActivity() {
                 }else{
                     if(mContext!=null) {
                         //Show a dialogue at bottom of screen..
-                        //
+                        // Inside your activity or fragment
+                        val bottomSheetFragment = BottomSheetFragment()
+                        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+
                     }
                 }
                 // Repeat this runnable code block again after a specified time interval
