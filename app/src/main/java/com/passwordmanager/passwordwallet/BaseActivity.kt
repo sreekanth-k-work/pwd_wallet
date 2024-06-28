@@ -1,6 +1,8 @@
 package com.example.passwordmanager
 
 import PasswordViewModel
+import android.app.NotificationManager
+import android.content.Context
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -11,6 +13,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.passwordmanager.passwordwallet.R
@@ -19,6 +24,7 @@ open class BaseActivity : FragmentActivity() {
 
     private var lastInteractionTime: Long = 0
     private var USER_IDLE_THRESHOLD_TIME  = 5  * 1000
+
 
     override fun onUserInteraction() {
         super.onUserInteraction()

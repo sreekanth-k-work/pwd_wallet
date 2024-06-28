@@ -107,7 +107,8 @@ class MainScreenActivity : BaseActivity() {
                     //Dont do anything
                 }else{
                     if(mContext!=null) {
-                        Toast.makeText(mContext, "User Inactive", Toast.LENGTH_SHORT).show()
+                        //Show a dialogue at bottom of screen..
+                        //
                     }
                 }
                 // Repeat this runnable code block again after a specified time interval
