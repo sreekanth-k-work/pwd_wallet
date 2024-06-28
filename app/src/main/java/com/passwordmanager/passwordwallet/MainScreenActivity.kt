@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -98,8 +99,7 @@ class MainScreenActivity : FragmentActivity() {
             override fun run() {
                 // Your code here
                 // Execute your task
-
-                Log.d("MainScreenActivity","Logging task.")
+                Toast.makeText(applicationContext, "Toast Message", Toast.LENGTH_SHORT).show();
 
                 // Repeat this runnable code block again after a specified time interval
                 mRunnable?.let {
