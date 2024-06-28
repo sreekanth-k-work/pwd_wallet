@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.passwordmanager.passwordwallet"
-        minSdk = 24
+        minSdk = 33
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -55,6 +55,7 @@ android {
 
 dependencies {
 
+    implementation (libs.androidx.work.runtime.ktx.v270)
     implementation (libs.androidx.room.runtime.v251)
     implementation (libs.androidx.room.ktx)
     implementation (libs.kotlinx.coroutines.core)
@@ -62,8 +63,11 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.material)
     implementation(libs.multidex)
+    implementation (libs.androidx.work.runtime.ktx)
+    implementation (libs.androidx.work.runtime.ktx.v230)
 
-    kapt(libs.androidx.room.compiler.v230) // Change this line
+
+    implementation (libs.androidx.biometric)
 
     kapt(libs.androidx.room.compiler) // Change this line
 

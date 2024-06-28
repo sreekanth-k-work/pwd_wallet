@@ -1,6 +1,8 @@
 [versions]
 agp = "8.5.0"
 androidxRoomCompiler = "2.3.0"
+androidxWorkRuntimeKtx = "2.7.0"
+biometric = "1.1.0"
 jetbrainsKotlinxCoroutinesCore = "1.5.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
@@ -22,8 +24,11 @@ roomRuntime = "2.3.0"
 roomRuntimeVersion = "2.5.1"
 securityCrypto = "1.1.0-alpha06"
 securityCryptoVersion = "1.1.0-alpha03"
+workRuntimeKtx = "2.9.0"
+workRuntimeKtxVersion = "2.3.0"
 
 [libraries]
+androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-compiler-v230 = { module = "androidx.room:room-compiler", version.ref = "androidxRoomCompiler" }
@@ -34,6 +39,9 @@ androidx-room-runtime-v230 = { module = "androidx.room:room-runtime", version.re
 androidx-room-runtime-v251 = { module = "androidx.room:room-runtime", version.ref = "roomRuntimeVersion" }
 androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
 androidx-security-crypto-v110alpha03 = { module = "androidx.security:security-crypto", version.ref = "securityCryptoVersion" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
+androidx-work-runtime-ktx-v230 = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtxVersion" }
+androidx-work-runtime-ktx-v270 = { module = "androidx.work:work-runtime-ktx", version.ref = "androidxWorkRuntimeKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

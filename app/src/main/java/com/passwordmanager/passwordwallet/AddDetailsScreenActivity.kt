@@ -20,7 +20,7 @@ class AddDetailsScreenActivity : AppCompatActivity() {
     private lateinit var usernameEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var eyeIcon: ImageView
-    private lateinit var submitButton: Button
+    private lateinit var saveButton: Button
     private lateinit var backButton:Button
     private var isPasswordVisible = false
 
@@ -44,7 +44,7 @@ class AddDetailsScreenActivity : AppCompatActivity() {
         usernameEditText    =   findViewById(R.id.id_username)
         passwordEditText    =   findViewById(R.id.id_password)
         eyeIcon             =   findViewById(R.id.id_eye_icon)
-        submitButton        =   findViewById(R.id.id_save_button)
+        saveButton        =   findViewById(R.id.id_save_button)
         backButton          =   findViewById(R.id.id_back_btn)
 
         backButton.setOnClickListener(View.OnClickListener {
@@ -65,7 +65,7 @@ class AddDetailsScreenActivity : AppCompatActivity() {
             passwordEditText.setSelection(passwordEditText.text.length)
         }
 
-        submitButton.setOnClickListener {
+        saveButton.setOnClickListener {
             val website     = websiteEditText.text.toString().trim()
             val username    = usernameEditText.text.toString().trim()
             val password    = passwordEditText.text.toString().trim()

@@ -18,9 +18,9 @@ class PasswordListAdapter : RecyclerView.Adapter<PasswordListAdapter.PasswordVie
     }
 
     override fun onBindViewHolder(holder: PasswordViewHolder, position: Int) {
-        val current = passwords[position]
-        holder.websiteTextView.text  = current.title
-        holder.usernameTextView.text = current.username
+        val current                     =   passwords[position]
+        holder.websiteTextView.text     =   current.title
+        holder.usernameTextView.text    =   current.username
 
         // Handle item click
         holder.itemView.setOnClickListener {
@@ -43,7 +43,7 @@ class PasswordListAdapter : RecyclerView.Adapter<PasswordListAdapter.PasswordVie
     }
 
     class PasswordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val websiteTextView: TextView  = itemView.findViewById(com.passwordmanager.passwordwallet.R.id.id_website_value_tv)
-        val usernameTextView: TextView = itemView.findViewById(com.passwordmanager.passwordwallet.R.id.id_username_value_tv)
+        val websiteTextView: TextView   =   itemView.findViewById(com.passwordmanager.passwordwallet.R.id.id_website_value_tv)
+        val usernameTextView: TextView  =   itemView.findViewById(com.passwordmanager.passwordwallet.R.id.id_username_value_tv)
     }
 }

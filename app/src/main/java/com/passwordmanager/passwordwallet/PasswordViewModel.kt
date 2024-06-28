@@ -1,4 +1,5 @@
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,11 +10,10 @@ import com.passwordmanager.passwordwallet.PasswordEntryDao
 import kotlinx.coroutines.launch
 
 class PasswordViewModel(application: Application) : AndroidViewModel(application) {
-    private val _passwordEntries = MutableLiveData<List<PasswordEntry>>()
-    val passwordEntries: LiveData<List<PasswordEntry>> = _passwordEntries
+    private val _passwordEntries                        =   MutableLiveData<List<PasswordEntry>>()
+    val passwordEntries: LiveData<List<PasswordEntry>>  =   _passwordEntries
 
-    private val passwordEntryDao: PasswordEntryDao =
-        AppDatabase.getDatabase(application).passwordEntryDao()
+    private val passwordEntryDao: PasswordEntryDao      =   AppDatabase.getDatabase(application).passwordEntryDao()
 
     fun savePasswordEntry(passwordEntry: PasswordEntry) {
         viewModelScope.launch {
@@ -25,6 +25,7 @@ class PasswordViewModel(application: Application) : AndroidViewModel(application
     fun loadPasswordEntries() {
         viewModelScope.launch {
             val entries = fetchPasswordEntriesFromDatabase()
+            Log.d("Simply","Simply")
             _passwordEntries.postValue(entries)
         }
     }

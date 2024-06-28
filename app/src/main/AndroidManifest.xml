@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -9,8 +15,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/wallet_app_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PasswordWallet"
-        tools:targetApi="31">
+        android:theme="@style/Theme.PasswordWallet">
+
+        <receiver android:name="com.example.passwordmanager.BiometricPromptReceiver" />
+
+
         <activity
             android:name="com.example.passwordmanager.MainScreenActivity"
             android:exported="true"
@@ -20,9 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-        <activity android:name="com.example.passwordmanager.AddDetailsScreenActivity"/>
-        <activity android:name="com.passwordmanager.passwordwallet.DetailActivity"/>
+        <activity android:name="com.example.passwordmanager.AddDetailsScreenActivity" />
+        <activity android:name=".DetailActivity" />
     </application>
 </manifest>
