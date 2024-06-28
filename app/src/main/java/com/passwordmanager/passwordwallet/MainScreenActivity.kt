@@ -9,20 +9,27 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.work.*
+import androidx.work.Constraints
+import androidx.work.ExistingWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.passwordmanager.passwordwallet.R
 import java.util.concurrent.TimeUnit
 
+
 class MainScreenActivity : FragmentActivity() {
-    private var passwordViewModel: PasswordViewModel? = null
-    private val REQUEST_BIOMETRIC_PERMISSION_CODE = 1000
+    private var mPasswordVm: PasswordViewModel?   = null
+    private val REQUEST_BIOMETRIC_PERMISSION_CODE       = 1000
+
+    private val mHandler: android.os.Handler                     = android.os.Handler()
+    private var mRunnable: Runnable?                             = null
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -77,15 +84,34 @@ class MainScreenActivity : FragmentActivity() {
             overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
         }
 
-        passwordViewModel = ViewModelProvider(this).get(PasswordViewModel::class.java)
+        mPasswordVm = ViewModelProvider(this).get(PasswordViewModel::class.java)
 
-        passwordViewModel?.loadPasswordEntries()
+        mPasswordVm?.loadPasswordEntries()
 
-        passwordViewModel?.passwordEntries?.observe(this, Observer { passwordEntries ->
+        mPasswordVm?.passwordEntries?.observe(this, Observer { passwordEntries ->
             adapter.setPasswords(passwordEntries)
         })
 
         hideStatusBar()
+
+        mRunnable = object : Runnable {
+            override fun run() {
+                // Your code here
+                // Execute your task
+
+                Log.d("MainScreenActivity","Logging task.")
+
+                // Repeat this runnable code block again after a specified time interval
+                mRunnable?.let {
+                    mHandler.postDelayed(it, 10000) // 1000 milliseconds = 1 second
+                }
+            }
+        }
+
+        // Start the task
+        mRunnable?.let {
+            mHandler.post(it)
+        }
     }
 
     private fun scheduleAutoLockWorker() {
@@ -110,5 +136,12 @@ class MainScreenActivity : FragmentActivity() {
     private fun hideStatusBar() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         actionBar?.hide()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        mRunnable?.let { mHandler.removeCallbacks(it) }
+
     }
 }
