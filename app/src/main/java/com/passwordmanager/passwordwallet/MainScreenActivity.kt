@@ -3,6 +3,7 @@ package com.example.passwordmanager
 import PasswordListAdapter
 import PasswordViewModel
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -25,12 +26,13 @@ import com.passwordmanager.passwordwallet.R
 import java.util.concurrent.TimeUnit
 
 
-class MainScreenActivity : FragmentActivity() {
+class MainScreenActivity : BaseActivity() {
     private var mPasswordVm: PasswordViewModel?   = null
     private val REQUEST_BIOMETRIC_PERMISSION_CODE       = 1000
 
     private val mHandler: android.os.Handler                     = android.os.Handler()
     private var mRunnable: Runnable?                             = null
+    private var mContext: Context? = null
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -54,6 +56,8 @@ class MainScreenActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_screen)
+
+        mContext    =   this
 
         Log.d("MainScreenActivity", "Activity created")
 
@@ -99,8 +103,13 @@ class MainScreenActivity : FragmentActivity() {
             override fun run() {
                 // Your code here
                 // Execute your task
-                Toast.makeText(applicationContext, "Toast Message", Toast.LENGTH_SHORT).show();
-
+                if(isUserActive()){
+                    //Dont do anything
+                }else{
+                    if(mContext!=null) {
+                        Toast.makeText(mContext, "User Inactive", Toast.LENGTH_SHORT).show()
+                    }
+                }
                 // Repeat this runnable code block again after a specified time interval
                 mRunnable?.let {
                     mHandler.postDelayed(it, 10000) // 1000 milliseconds = 1 second
@@ -112,6 +121,10 @@ class MainScreenActivity : FragmentActivity() {
         mRunnable?.let {
             mHandler.post(it)
         }
+    }
+
+    override fun isUserActive(): Boolean {
+        return super.isUserActive()
     }
 
     private fun scheduleAutoLockWorker() {
@@ -132,6 +145,7 @@ class MainScreenActivity : FragmentActivity() {
 
         Log.d("MainScreenActivity", "AutoLockWorker scheduled")
     }
+
 
     private fun hideStatusBar() {
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
