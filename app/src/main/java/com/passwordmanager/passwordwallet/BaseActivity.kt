@@ -1,46 +1,43 @@
 package com.example.passwordmanager
 
-import PasswordViewModel
-import android.app.NotificationManager
 import android.content.Context
-import android.os.Bundle
-import android.text.method.HideReturnsTransformationMethod
-import android.text.method.PasswordTransformationMethod
+import android.content.SharedPreferences
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModelProvider
-import com.passwordmanager.passwordwallet.R
 
 open class BaseActivity : FragmentActivity() {
 
     private var lastInteractionTime: Long = 0
-    private var USER_IDLE_THRESHOLD_TIME  = 5  * 1000
-
+    public var USER_IDLE_THRESHOLD_TIME  = 30  * 1000 //30 seconds delay.
+    public var CHECKING_FOR_USER_ACTIVITY_TIME = 5 *1000
 
     override fun onUserInteraction() {
         super.onUserInteraction()
         lastInteractionTime = System.currentTimeMillis()
         Log.d("BaseActivity", "User Interacted")
+        setLastActiveTime(lastInteractionTime)
     }
 
-    open fun isUserActive(): Boolean {
-        // Check if the user interacted within the last 5 minutes
-        val currentTime     =   System.currentTimeMillis()
-        if(currentTime - lastInteractionTime < USER_IDLE_THRESHOLD_TIME){
-            //user has interacted..
-            return true
-        }
+    fun isUserActive(): Boolean {
+        val lastActiveTime  = getLastActiveTime()
+        val currentTime     = System.currentTimeMillis()
+        val inactiveThreshold = USER_IDLE_THRESHOLD_TIME // 30 seconds in milliseconds
 
-        return false
-
+        val sessionTime:Long  = currentTime - lastActiveTime
+        return !(sessionTime >= inactiveThreshold)
     }
+
+    private fun getLastActiveTime(): Long {
+        val preferences: SharedPreferences = applicationContext.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        return preferences.getLong("last_active_time", 0)
+    }
+
+    private fun setLastActiveTime(iLastActiveTime:Long){
+        val preferences: SharedPreferences = applicationContext.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = preferences.edit()
+        editor.putLong("last_active_time",iLastActiveTime)
+        editor.apply()
+    }
+
+
 }

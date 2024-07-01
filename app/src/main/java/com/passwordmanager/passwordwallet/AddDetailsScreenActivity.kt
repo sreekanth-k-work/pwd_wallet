@@ -44,7 +44,7 @@ class AddDetailsScreenActivity : AppCompatActivity() {
         usernameEditText    =   findViewById(R.id.id_username)
         passwordEditText    =   findViewById(R.id.id_password)
         eyeIcon             =   findViewById(R.id.id_eye_icon)
-        saveButton        =   findViewById(R.id.id_save_button)
+        saveButton          =   findViewById(R.id.id_save_button)
         backButton          =   findViewById(R.id.id_back_btn)
 
         backButton.setOnClickListener(View.OnClickListener {

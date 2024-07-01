@@ -27,12 +27,14 @@ class AutoLockWorker(
             Log.d("AutoLockWorker", "User active, no action needed")
         }
 
-        // Reschedule the worker to run again after 10 seconds
-        val autoLockWorkRequest = OneTimeWorkRequestBuilder<AutoLockWorker>()
-            .setInitialDelay(10, TimeUnit.SECONDS)
-            .build()
+        if(isUserInactive()) {
+            // Reschedule the worker to run again after 10 seconds
+            val autoLockWorkRequest = OneTimeWorkRequestBuilder<AutoLockWorker>()
+                .setInitialDelay(10, TimeUnit.SECONDS)
+                .build()
 
-        WorkManager.getInstance(applicationContext).enqueue(autoLockWorkRequest)
+            WorkManager.getInstance(applicationContext).enqueue(autoLockWorkRequest)
+        }
 
         return Result.success()
     }
@@ -46,9 +48,10 @@ class AutoLockWorker(
     private fun isUserInactive(): Boolean {
         val lastActiveTime  = getLastActiveTime()
         val currentTime     = System.currentTimeMillis()
-        val inactiveThreshold = 30 * 1000 // 10 seconds in milliseconds
+        val inactiveThreshold = 30 * 1000 // 30 seconds in milliseconds
 
-        return (currentTime - lastActiveTime) >= inactiveThreshold
+        val sessionTime:Long  = currentTime - lastActiveTime
+        return sessionTime >= inactiveThreshold
     }
 
     private fun getLastActiveTime(): Long {

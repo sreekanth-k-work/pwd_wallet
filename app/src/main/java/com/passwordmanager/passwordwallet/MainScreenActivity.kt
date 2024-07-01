@@ -9,7 +9,6 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +25,7 @@ import java.util.concurrent.TimeUnit
 
 
 class MainScreenActivity : BaseActivity() {
-    private var mPasswordVm: PasswordViewModel?   = null
+    private var mPasswordVm: PasswordViewModel?         = null
     private val REQUEST_BIOMETRIC_PERMISSION_CODE       = 1000
 
     private val mHandler: android.os.Handler                     = android.os.Handler()
@@ -103,7 +102,8 @@ class MainScreenActivity : BaseActivity() {
             override fun run() {
                 // Your code here
                 // Execute your task
-                if(isUserActive()){
+                var isUserActive:Boolean = isUserActive()
+                if(isUserActive){
                     //Dont do anything
                 }else{
                     if(mContext!=null) {
@@ -124,12 +124,17 @@ class MainScreenActivity : BaseActivity() {
                                         }
                                     }
                                     if(isShowing == false) {
-                                        mBottomSheetFragment?.dismiss()
-                                        mBottomSheetFragment = BottomSheetFragment()
-                                        mBottomSheetFragment!!.show(
-                                            supportFragmentManager,
-                                            mBottomSheetFragment!!.tag
-                                        )
+
+                                        if(!isUserActive()) {
+                                            //Only if user is inactive,
+                                            // then do the following..
+                                            mBottomSheetFragment?.dismiss()
+                                            mBottomSheetFragment = BottomSheetFragment()
+                                            mBottomSheetFragment!!.show(
+                                                supportFragmentManager,
+                                                mBottomSheetFragment!!.tag
+                                            )
+                                        }
                                     }
                             } else {
                                 // BottomSheetDialogFragment is already showing
@@ -139,7 +144,7 @@ class MainScreenActivity : BaseActivity() {
                 }
                 // Repeat this runnable code block again after a specified time interval
                 mRunnable?.let {
-                    mHandler.postDelayed(it, 10000) // 1000 milliseconds = 1 second
+                    mHandler.postDelayed(it, USER_IDLE_THRESHOLD_TIME.toLong()) // 1000 milliseconds = 1 second
                 }
             }
         }
@@ -148,10 +153,6 @@ class MainScreenActivity : BaseActivity() {
         mRunnable?.let {
             mHandler.post(it)
         }
-    }
-
-    override fun isUserActive(): Boolean {
-        return super.isUserActive()
     }
 
     private fun scheduleAutoLockWorker() {
