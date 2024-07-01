@@ -28,7 +28,17 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         @Nullable container: ViewGroup?,
         @Nullable savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.bottom_sheet_dialog, container, false)
+        var inflatedView:View =  inflater.inflate(R.layout.bottom_sheet_dialog, container, false)
+        inflatedView.findViewById<Button>(R.id.id_use_biometric_btn).setOnClickListener {
+            Log.d("BottomSheetFragment","Biometric button clicked")
+            Toast.makeText(inflatedView.context,"Biometric button clicked.", Toast.LENGTH_SHORT).show()
+        }
+
+        inflatedView.findViewById<Button>(R.id.id_use_password_btn).setOnClickListener {
+            Log.d("BottomSheetFragment","Password button clicked")
+            Toast.makeText(inflatedView.context, "Password authentication selected", Toast.LENGTH_SHORT).show()
+        }
+        return inflatedView
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -36,6 +46,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         // Inflate your custom layout here, or modify the existing one
         val view: View = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_dialog, null)
+
 
 
         context?.let {
@@ -74,16 +85,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             .setNegativeButtonText("Use account password")
             .build()
 
-        view.findViewById<Button>(R.id.id_use_biometric_btn).setOnClickListener {
-            Log.d("BottomSheetFragment","Biometric button clicked")
-            biometricPrompt.authenticate(promptInfo)
-        }
 
-        view.findViewById<Button>(R.id.id_use_password_btn).setOnClickListener {
-            Log.d("BottomSheetFragment","Password button clicked")
-            Toast.makeText(context, "Password authentication selected", Toast.LENGTH_SHORT).show()
-            // Add logic for password authentication if needed
-        }
     }
 
 }
