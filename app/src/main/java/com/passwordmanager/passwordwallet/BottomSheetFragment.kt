@@ -158,9 +158,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
                     override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                         super.onAuthenticationSucceeded(result)
-                        val type = result.authenticationType
-                        Toast.makeText(context, "Authentication successful!", Toast.LENGTH_SHORT)
-                            .show()
+                        dismiss()
                     }
                 },
             )
