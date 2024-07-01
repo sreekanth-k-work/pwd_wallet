@@ -46,7 +46,7 @@ class AutoLockWorker(
     private fun isUserInactive(): Boolean {
         val lastActiveTime  = getLastActiveTime()
         val currentTime     = System.currentTimeMillis()
-        val inactiveThreshold = 10 * 1000 // 10 seconds in milliseconds
+        val inactiveThreshold = 30 * 1000 // 10 seconds in milliseconds
 
         return (currentTime - lastActiveTime) >= inactiveThreshold
     }

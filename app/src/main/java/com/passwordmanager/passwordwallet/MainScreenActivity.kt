@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -30,7 +31,8 @@ class MainScreenActivity : BaseActivity() {
 
     private val mHandler: android.os.Handler                     = android.os.Handler()
     private var mRunnable: Runnable?                             = null
-    private var mContext: Context? = null
+    private var mContext: Context?                               = null
+    private var mBottomSheetFragment:BottomSheetFragment?         = null
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -107,9 +109,32 @@ class MainScreenActivity : BaseActivity() {
                     if(mContext!=null) {
                         //Show a dialogue at bottom of screen..
                         // Inside your activity or fragment
-                        val bottomSheetFragment = BottomSheetFragment()
-                        bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
 
+//                        if (mBottomSheetFragment != null) {
+                            val existingFragment = fragmentManager.findFragmentByTag(BottomSheetFragment.TAG)
+                            if (existingFragment == null) {
+                                    var isShowing:Boolean = false
+                                    if(BottomSheetFragment == null){
+                                        isShowing = false
+                                    }else{
+                                        if(mBottomSheetFragment?.isVisible == true){
+                                            isShowing = true
+                                        }else{
+                                            isShowing = false
+                                        }
+                                    }
+                                    if(isShowing == false) {
+                                        mBottomSheetFragment?.dismiss()
+                                        mBottomSheetFragment = BottomSheetFragment()
+                                        mBottomSheetFragment!!.show(
+                                            supportFragmentManager,
+                                            mBottomSheetFragment!!.tag
+                                        )
+                                    }
+                            } else {
+                                // BottomSheetDialogFragment is already showing
+                            }
+//                        }
                     }
                 }
                 // Repeat this runnable code block again after a specified time interval

@@ -1,40 +1,89 @@
 package com.example.passwordmanager
 
 import android.app.Dialog
-import android.content.DialogInterface
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
+import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.Nullable
-import com.google.android.material.bottomsheet.BottomSheetBehavior
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-
+import com.passwordmanager.passwordwallet.R
+import java.util.concurrent.Executor
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
+    companion object {
+        const val TAG = "MyBottomSheetFragment"
+    }
+
     @org.jetbrains.annotations.Nullable
     override fun onCreateView(
         inflater: LayoutInflater,
         @Nullable container: ViewGroup?,
         @Nullable savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(com.passwordmanager.passwordwallet.R.layout.bottom_sheet_dialog, container, false)
+        return inflater.inflate(R.layout.bottom_sheet_dialog, container, false)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState) as BottomSheetDialog
-        dialog.setOnShowListener { dialogInterface: DialogInterface ->
-            val d = dialogInterface as BottomSheetDialog
-            val bottomSheet =
-                d.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
-            if (bottomSheet != null) {
-                val behavior: BottomSheetBehavior<*> =
-                    BottomSheetBehavior.from(bottomSheet)
-                behavior.state = BottomSheetBehavior.STATE_EXPANDED
-            }
+
+        // Inflate your custom layout here, or modify the existing one
+        val view: View = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_dialog, null)
+
+
+        context?.let {
+            setUpBiometric(it, view)
         }
+        // Set the content view and return the dialog
+        dialog.setContentView(view)
         return dialog
     }
+
+
+
+    fun setUpBiometric(context: Context, view: View) {
+        val executor = ContextCompat.getMainExecutor(context)
+        val biometricPrompt = BiometricPrompt(this, executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                    Toast.makeText(context, "Authentication error: $errString", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    Toast.makeText(context, "Authentication succeeded!", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                    Toast.makeText(context, "Authentication failed", Toast.LENGTH_SHORT).show()
+                }
+            })
+
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Biometric login for my app")
+            .setSubtitle("Log in using your biometric credential")
+            .setNegativeButtonText("Use account password")
+            .build()
+
+        view.findViewById<Button>(R.id.id_use_biometric_btn).setOnClickListener {
+            Log.d("BottomSheetFragment","Biometric button clicked")
+            biometricPrompt.authenticate(promptInfo)
+        }
+
+        view.findViewById<Button>(R.id.id_use_password_btn).setOnClickListener {
+            Log.d("BottomSheetFragment","Password button clicked")
+            Toast.makeText(context, "Password authentication selected", Toast.LENGTH_SHORT).show()
+            // Add logic for password authentication if needed
+        }
+    }
+
 }

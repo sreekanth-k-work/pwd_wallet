@@ -72,6 +72,7 @@ dependencies {
     kapt(libs.androidx.room.compiler) // Change this line
 
     implementation (libs.androidx.room.runtime)
+    implementation ("androidx.biometric:biometric:1.1.0")
     annotationProcessor (libs.androidx.room.compiler)
     implementation(libs.androidx.security.crypto)
     implementation(libs.androidx.core.ktx)
