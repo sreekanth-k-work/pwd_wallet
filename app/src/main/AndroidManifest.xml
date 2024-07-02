@@ -30,6 +30,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.passwordmanager.AddDetailsScreenActivity" />
+        <activity android:name="com.example.myapp.PasswordActivity" />
         <activity android:name=".DetailActivity" />
     </application>
 </manifest>

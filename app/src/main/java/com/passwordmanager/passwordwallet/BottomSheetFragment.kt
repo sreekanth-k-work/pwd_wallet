@@ -21,11 +21,13 @@ import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
+import com.example.myapp.PasswordActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.passwordmanager.passwordwallet.R
 import java.util.concurrent.Executor
+
 
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
@@ -54,7 +56,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         inflatedView.findViewById<Button>(R.id.id_use_password_btn).setOnClickListener {
             Log.d("BottomSheetFragment","Password button clicked")
-            Toast.makeText(inflatedView.context, "Password authentication selected", Toast.LENGTH_SHORT).show()
+            val intent = Intent(
+                activity,
+                PasswordActivity::class.java
+            )
+            startActivity(intent)
         }
 
         setUpBiometric(inflatedView.context)
